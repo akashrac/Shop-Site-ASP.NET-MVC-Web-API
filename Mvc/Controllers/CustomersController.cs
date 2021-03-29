@@ -52,5 +52,34 @@ namespace Mvc.Controllers
             TempData["SuccessMessage"] = "Deleted Successfully";
             return RedirectToAction("Index");
         }
+
+        public ActionResult Register()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Register(Mvc.Models.Customer customer)
+        {
+            using (LoginDataBaseEntities db = new LoginDataBaseEntities())
+            {
+                var customerDetails = db.Customers.Where(x => x.Email == customer.Email).FirstOrDefault();
+
+                bool answer = customerDetails == null ? true : false;
+
+                if (customerDetails != null)
+                {
+                    TempData["WarningMessage"] = "User already exists. Please try to login.";
+                    return RedirectToAction("Index", "Login");
+                }
+
+                else
+                {
+                    HttpResponseMessage response = GlobalVariables.WebApiClient.PostAsJsonAsync("Customers", customer).Result;
+                    TempData["SuccessMessage"] = "Reagistered successfully";
+                    return RedirectToAction("Index", "Login");
+                }
+            }
+        }
+
     }
 }

@@ -21,5 +21,7 @@ namespace Mvc.Models
 
         [Required(ErrorMessage = "Mandatory")]
         public string Password { get; set; }
+
+        public string LoginErrorMessage { get; set; }
     }
 }

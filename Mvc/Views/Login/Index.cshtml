@@ -6,7 +6,7 @@
 
 }
 
-<h2>Admin Login Page</h2>
+<h2>Login Page</h2>
 
 <body>
     @using (Html.BeginForm("Authorize", "Login", FormMethod.Post))
@@ -66,3 +66,19 @@
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+@section scripts{
+    <script>
+        $(function () {
+            var successMessage = '@TempData["SuccessMessage"]'
+            if (successMessage != '')
+                alertify.success(successMessage);
+        });
+
+        $(function () {
+            var warningMessage = '@TempData["WarningMessage"]'
+            if (warningMessage != '')
+                alertify.error(warningMessage);
+        });
+
+    </script>
+}
