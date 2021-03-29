@@ -1,0 +1,68 @@
+﻿@model Mvc.Models.Admin
+
+@{
+    Layout = "~/Views/Shared/_loginLayout.cshtml";
+    ViewBag.Title = "Login";
+
+}
+
+<h2>Admin Login Page</h2>
+
+<body>
+    @using (Html.BeginForm("Authorize", "Login", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            @*<h4>Customer</h4>*@
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.AdminId)
+
+            <div class="form-group">
+                @*@Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                <div class="col-md-10">
+                    Choose User :
+                    @Html.LabelFor(m => m.UserCheck)
+                    @Html.DropDownListFor(model => model.UserCheck, new SelectList(ViewBag.list), "Select user type", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.UserCheck, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @*@Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                <div class="col-md-10">
+                    Admin Email :
+                    @Html.EditorFor(model => model.AdminEmail, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.AdminEmail, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @*@Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                <div class="col-md-10">
+                    Admin Password :
+                    @Html.EditorFor(model => model.AdminPassword, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.AdminPassword, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div>
+                <label class="field-validation-error">@Html.DisplayFor(model => model.LoginErrorMessage)</label>
+            </div>
+            <table>
+                <tr>
+                    <td><input type="submit" name="Login" value="Login" class="btn btn-success" /></td>
+                </tr>
+            </table>
+            @*<div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+
+                        <input type="submit" value="Submit" id="Submit" class="btn btn-default" onclick="location.href='@Url.Action("Authorize", "Login")'" />
+                    </div>
+                </div>*@
+        </div>
+    }
+</body>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Mvc.Models.mvcCustomerModel>
+@{
+    if(Session["adminId"] == null && Session["customerId"] == null)
+    {
+        Response.Redirect("~/Login/Index");
+    }
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Shop Site</h1>
+    <p class="lead">Shop Site</p>
+    <p><a href="https://localhost:44391/Customers" class="btn btn-primary btn-lg">Customer Register &raquo;</a></p>
+    <p><a href="https://localhost:44391/Items" class="btn btn-primary btn-lg">Item Register &raquo;</a></p>
+</div>
+
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Shop Site</h2>
+        <p>
+            Shopping Site using ASP.NET MVC and Web API
+        </p>
+
+    </div>
+
+    @*<div class="col-md-4">
+            <h2>Get more libraries</h2>
+            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
+            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Web Hosting</h2>
+            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
+            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+        </div>*@
+</div>

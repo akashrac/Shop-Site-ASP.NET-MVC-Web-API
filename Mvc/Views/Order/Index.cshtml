@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Mvc.Models.mvcItemModel>
+
+@{
+    if (Session["customerId"] == null)
+    {
+        Response.Redirect("~/Login/Index");
+    }
+    ViewBag.Title = "Index";
+}
+
+<br />
+
+<table class="table table-striped">
+    <thead class="table-heading">
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.ItemName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ItemPrice)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.ItemName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ItemPrice)
+            </td>
+            <td>
+                <a href="@Url.Action("AddToCart","Order", new { id = item.ItemId })" class="btn btn-default"><i class="fa fa-pencil"></i>Add to Cart</a>
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+@section scripts{
+    <script>
+        @*$(function () {
+            var successMessage = '@TempData["SuccessMessage"]'
+            if (successMessage != '')
+                alertify.success(successMessage);
+        });
+
+        function Delete(id) {
+            alertify.confirm('Confirmation','Are You Sure to Delete this item ?',function(){
+                window.location.href  = '@Url.Action("Delete","Items")/'+id;
+            },null );
+        }*@
+    </script>
+}
